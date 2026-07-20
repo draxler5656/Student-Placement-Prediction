@@ -489,16 +489,25 @@ if predict:
 
     })
 
-    st.subheader("📄 Student Information Summary")
+    st.subheader("📋 Student Information Summary")
     st.dataframe(input_data, use_container_width=True)
 
     with st.spinner("🤖 AI is analyzing the student's profile..."):
 
-        input_processed = preprocessor.transform(input_data)
+       try:
+           input_processed = preprocessor.transform(input_data)
 
-        prediction = model.predict(input_processed)[0]
+           prediction = model.predict(input_processed)[0]
 
-        probability = model.predict_proba(input_processed)
+           probability = model.predict_proba(input_processed)
+
+       except Exception as e:
+           st.error(f"Error: {e}")
+           st.write("### Data Types")
+           st.write(input_data.dtypes)
+           st.write("### Input Data")
+           st.write(input_data)
+           st.stop()
 
     placed_probability = probability[0][1] * 100
     notplaced_probability = probability[0][0] * 100
