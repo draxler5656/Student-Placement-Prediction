@@ -92,7 +92,7 @@ Predict Student Placement using Machine Learning (Logistic Regression)
 # ==========================================
 
 with st.sidebar:
-    st.image("GT_Learning_Logo.png, width=260)
+    st.image("GT_Learning_Logo.png", width=260)
 
     st.image(
         "https://img.icons8.com/color/96/graduation-cap.png",
